@@ -1,4 +1,7 @@
-//BFS, queue, graph
+/*
+특정 거리의 도시 찾기
+BFS, queue, graph
+*/
 
 import Foundation
 
@@ -61,10 +64,12 @@ for (index, value) in distances.enumerated() {
         answer.append(index)
     }
 }
-
+//만약 최단거리(K)에 해당하는 노드가 존재하지 않는다면
 if answer.count == 0 {
+    //-1을 출력
     print(-1)
 } else {
+    //그렇지 않고 존재한다면 각 노드들을 출력
     answer.forEach { print($0) }
 }
 
