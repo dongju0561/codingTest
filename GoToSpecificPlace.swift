@@ -25,6 +25,7 @@ var queue: [Int] = [start]
 var graph: [[Int]] = Array(repeating: [], count: numOfNode + 1)
 
 //두번째 인덱스만큼 반복하여 단방향 도로를 설치
+//4 2
 for _ in 0..<input[1] {
     //첫번째 노드에서 갈 수 있는 노드를 설정(도로 설치)
     let inputs: [Int] = readLine()!.components(separatedBy: " ").map { Int(String($0)) ?? 0 }
@@ -41,7 +42,7 @@ visited[start] = true
 while !queue.isEmpty {
     //dequeue한 요소를 first 변수에 할당
     let first: Int = queue.removeFirst()
-
+    
     //현재 노드에서 갈 수 있는 노드들로 반복
     for node in graph[first] {
         //visited 배열로 해당 노드를 방문했는지 확인
