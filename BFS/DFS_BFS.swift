@@ -2,9 +2,8 @@
  [백준] DFS와 BFS
  하나의 그래프에서 DFS 방식과 BFS 방식을 각각 사용하여 노드 이동경로를 출력하는 문제
  조건은 정점의 번호가 작은것부터 출력해야함
- 
  */
- 
+
 /*
  간선 중복 방지
  
@@ -21,9 +20,14 @@
  변경 후: [[], [2, 3], [1], [4, 1], [5, 3], [4]]
  */
 
+/*
+ 주의: 출력 결과 예시와 같은 형식으로 출력해야함 otherwise 백준에서 틀림 처리..
+ */
+
 import Foundation
 
 //함수 정의
+
 func DFS(node startNode: Int) -> [Int]{
     var stack = [Int]()
     //노드번호와 인덱스 일치
@@ -81,7 +85,6 @@ var graph: [[Int]] = Array(repeating: [], count: numOfNode + 1)
 
 for _ in 0..<numOfLine{
     let nodes: [Int] = readLine()!.components(separatedBy: " ").map(){ Int($0) ?? 0}
-    //무방향 그래프
     let firstNode = nodes[0]
     let secondNode = nodes[1]
     
@@ -91,5 +94,13 @@ for _ in 0..<numOfLine{
         graph[secondNode].append(firstNode)
     }
 }
-print(DFS(node: startNode))
-print(BFS(node: startNode))
+
+//주의: 출력 결과 예시와 같은 형식으로 출력해야함
+DFS(node: startNode).forEach({ num in
+    print(num,terminator: " ")
+})
+print("")
+BFS(node: startNode).forEach({ num in
+    print(num,terminator: " ")
+})
+print("")
