@@ -2,8 +2,6 @@
  [백준] 경로 찾기
  
  */
-
-
 import Foundation
 
 //함수 정의
@@ -18,6 +16,7 @@ func BFS(start: Int, end: Int) -> Int{
         
         if !visited[pop] {
             
+//            첫번째 시도
 //            이렇게 코드를 짜면 start 노드와 end 노드가 같을때 무조건 1을 반환
 //            다른 노드를 거쳐 start 노드로 돌아오는 경우가 진짜 1인 경우
 //            if pop == end{
