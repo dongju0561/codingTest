@@ -11,7 +11,6 @@
 
 /*
  실수한 것
-
  - BFS를 구현하면서 queue가 채워져있는 동안의 반복에서 append하는 코드를 생략하여 다음 탐색이 이루워지지 않았습니다.
  - 노드 번호와 배열의 인덱스 번호를 일치시키는 것을 신경쓰자 -> 실수를 줄 일수 있음
 */
@@ -48,6 +47,7 @@ for _ in 0..<M{
     let start = inputLine[0]
     let end = inputLine[1]
     //무방향그래프의 간선을 그리기 위한 노력 -> 다른 방법도 있는지 확인해 보자
+    //대부분 아래와 같은 방식으로 진행
     graph[start].append(end)
     graph[end].append(start)
 }
