@@ -26,6 +26,10 @@ func AllBFS(){
 //BFS 탐색 후 탐색한 집의 갯수 반환
 func BFS(_ i: Int, _ j: Int) -> Int{
     var numOfHouse: Int = 0
+
+    //처음 탐색을 시작한 노드의 방문처리
+    visited[i][j] = true
+    numOfHouse += 1
     
     var queue = [[Int]]()
     
