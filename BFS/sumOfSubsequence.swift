@@ -21,7 +21,6 @@ func DFS(level: Int, start: Int){
     if sum == S && level >= 1{
            count += 1
    }
-   
    for i in start..<N{
        if !visited[i]{
            visited[i] = true
