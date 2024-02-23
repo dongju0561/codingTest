@@ -9,7 +9,7 @@
  
  연산 시간을 줄이는 방법
  - split(separator: )
- - index를 증가함으로써 dequeue 진행하는 큐 구현
+ - index를 증가함으로써 dequeue 진행하는 큐 구현(하지만 메모리를 많이 잡아먹을 수 있다.)
  
  */
 let N: Int = Int(readLine()!)!
