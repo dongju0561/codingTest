@@ -1,4 +1,8 @@
 let impossible: String = "IMPOSSIBLE"
+let WALL = -2
+let SPACE = 0
+let ME = -1
+let FIRE = 1
 
 let SC: Int = Int(readLine()!)!
 
@@ -11,12 +15,12 @@ func spreadFire(fireMap: inout [[Int]], height: Int, width: Int){
     //불 위치 enqueue
     for y in 0..<height{
         for x in 0..<width{
-            if fireMap[y][x] == 1{
+            if fireMap[y][x] == FIRE{
                 queue.append((y,x))
             }
-            if fireMap[y][x] == 2{
+            if fireMap[y][x] == ME{
                 currentPos.append(contentsOf: [y,x])
-                fireMap[y][x] = 0
+                fireMap[y][x] = SPACE
             }
         }
     }
@@ -50,7 +54,7 @@ func spreadFire(fireMap: inout [[Int]], height: Int, width: Int){
         }
     }
             
-//    fireMap[currentPos[0]][currentPos[1]] = -1
+    fireMap[currentPos[0]][currentPos[1]] = ME
 }
 func isSpaceForEscape(fireMap:[[Int]],height: Int, width: Int) -> Bool{
     //지도 외곽에 탈출할 수 있는 공간이 없는 경우
@@ -129,31 +133,34 @@ for _ in 0..<SC{
     let h = hw[1]
     let w = hw[0]
 
+
     var fireMap: [[Int]] = Array(repeating: [], count: h)
+
 
     for height in 0..<h{
         let temp = readLine()!.map(){
             if $0 == "#"{
-                return -2
+                return WALL
             }
             else if $0 == "."{
-                return 0
+                return SPACE
             }
             else if $0 == "@"{
-                return -1
+                return ME
             }
             else {
-                return 1
+                return FIRE
             }
         }
         fireMap[height].append(contentsOf: temp)
     }
-
+   
+    
     if !isSpaceForEscape(fireMap: fireMap, height: h, width: w){ continue }
 
     spreadFire(fireMap: &fireMap, height: h, width: w)
-
+    
     print(findRoute(fireMap: &fireMap, height: h, width: w) ?? impossible)
-
+    
 }
 
