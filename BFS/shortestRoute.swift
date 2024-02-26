@@ -13,6 +13,7 @@
  시작 노드와 도착 노드는 같지 않다.
  두 노드간 간선은 여러개 존재(최소 가중치로만 이용)
  */
+
 import Foundation
 
 struct PriorityQueue<T> {
@@ -146,3 +147,81 @@ func Dijkstra(startNode: Int) -> Void{
         }
     }
 }
+
+
+//
+//let VE = readLine()!.split(separator: " ").map(){Int(String($0))!}
+//let V = VE[0]
+//let E = VE[1]
+//let K = Int(readLine()!)! - 1
+//
+//var graph:[[(Int,Int)]] = Array(repeating: [], count: V)
+//
+//for _ in 0..<E{
+//    let uvw = readLine()!.split(separator: " ").map(){Int(String($0))!}
+//    let u = uvw[0] - 1
+//    let v = uvw[1] - 1
+//    let w = uvw[2]
+//
+//    //출발지와 도착지가 같은 중복되는 간선에서 가중치가 작은 오직 최적의 간선만 append
+//    var tempIdx = Int()
+//    if graph[u].contains(where: { t1 in
+//        for idx in 0..<graph[u].count{
+//            if graph[u][idx].0 == t1.0{
+//                tempIdx = idx
+//                return true
+//            }
+//        }
+//        return false
+//    }){
+//        if graph[u][tempIdx].1 > w{
+//            _ = graph[u].remove(at: tempIdx)
+//            graph[u].append((v,w))
+//        }
+//    }
+//    else {
+//        graph[u].append((v,w))
+//    }
+//
+//}
+//print(graph)
+//
+//func findRoute(endNode: Int){
+//    var weights: [Int] = Array(repeating: 0, count: V)
+//    var queue = [Int]()
+//    let startNode = 1
+//    var index: Int = 0
+//
+//    queue.append(startNode)
+//
+//    while index < queue.count{
+//        let pop = queue[index]
+//        let cost = weights[pop]
+//        print(pop,terminator: "->")
+//        for node in graph[pop]{
+//            let nextNode = node.0
+//            let fee = node.1
+//            if nextNode == endNode{
+//                print(weights[pop] + fee)
+//            }
+//            if weights[nextNode] > cost + fee{
+//                weights[nextNode] = cost + fee
+//                print(nextNode,terminator: "->")
+//                queue.append(nextNode)
+//            }
+//        }
+//        print("")
+//
+//
+//        index += 1
+//    }
+//    print("INF")
+//}
+//
+//for node in 0..<V{
+//    if node == K {
+//        print(0)
+//        continue
+//    }
+//    findRoute(endNode: node)
+//}
