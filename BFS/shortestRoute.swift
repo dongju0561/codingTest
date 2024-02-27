@@ -15,9 +15,9 @@
  */
 
 import Foundation
-
+//우선순위 큐를 구현을 위한 구조체
 struct PriorityQueue<T> {
-    //queue
+    //우선순위 큐의 배열
     var array = [T]()
     //우선순위를 정하는 기준
     let sort: (T, T) -> Bool
@@ -109,8 +109,10 @@ Dijkstra(startNode: K)
 
 func Dijkstra(startNode: Int) -> Void{
     let INF = Int.max
+    //시작 위치에서 각 노드에 최단경로로 도달했을때 거리. 도달할 수 없다면 INF로 저장
     var distances = Array(repeating: INF, count: N+1)
     distances[startNode] = 0
+    //우선순위 큐를 초기화와 동시에 우선순위를 정하기 위한 기준을 sort 인스턴스 프로퍼티에 저장
     var pq = PriorityQueue<(Int, Int)>(sort: {$0.0 < $1.0})
     //pq 초기화 탐색의 출발지는 K
     pq.push((0, startNode))
