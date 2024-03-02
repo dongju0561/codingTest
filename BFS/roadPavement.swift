@@ -24,42 +24,53 @@
 import Foundation
 
 struct PQ<T> {
+    //heap
     var nodes = [T]()
     let sort:(T, T) -> Bool
+    //정렬 기준 min heap 또는 max heap
     init(sort: @escaping (T, T) -> Bool) {
         self.sort = sort
     }
-    
     var isEmpty: Bool {
         return nodes.isEmpty
     }
     var count: Int {
         return nodes.count
     }
+    //특정 노드의 좌측 자식노드의 인덱스를 반환 받는 메소드
     func leftChild(of parentIndex: Int) -> Int {
         return parentIndex * 2 + 1
     }
+    //특정 노드의 우측 자식노드의 인덱스를 반환 받는 메소드
     func rightChild(of parentIndex: Int) -> Int {
         return parentIndex * 2 + 2
     }
+    //특정 노드의 부모노드의 인덱스를 반환 받는 메소드
     func parentIndex(of childIndex: Int) -> Int {
         return (childIndex - 1) / 2
     }
+
     mutating func shiftDown(from index: Int) {
         var parent = index
         while true {
             let left = leftChild(of: parent)
             let right = rightChild(of: parent)
             var candidate = parent
+            //좌측 노드의 인덱스가 전체 인덱스 범위 안에 있고 (min heap 기준) 좌측 자식노드가 부모노드보다 작은 경우
             if left < count && sort(nodes[left], nodes[candidate]) {
+                //candidate 변수에 좌측 자식노드의 인덱스 할당
                 candidate = left
             }
+            //좌측 노드의 인덱스가 전체 인덱스 범위 안에 있고 (min heap 기준) 우측 자식노드가 부모노드보다 작은 경우
             if right < count && sort(nodes[right], nodes[candidate]) {
+                //candidate 변수에 우측 자식노드의 인덱스 할당
                 candidate = right
             }
+            //candidate의 변화가 없다면 변경할 필요 없음..
             if candidate == parent {
                 return
             }
+
             nodes.swapAt(parent, candidate)
             parent = candidate
         }
@@ -68,6 +79,7 @@ struct PQ<T> {
     mutating func shiftUp(from index: Int) {
         var child = index
         var parent = parentIndex(of: child)
+        //0을 포함하지 않는 이유는 인덱스의 0은 트리의 루트 노드 인덱스이기 때문에 부모노드가 없다.
         while child > 0 && sort(nodes[child], nodes[parent]) {
             nodes.swapAt(child, parent)
             child = parent
