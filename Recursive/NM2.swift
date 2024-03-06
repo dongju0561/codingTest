@@ -10,7 +10,6 @@ let M = NM[1]
 var nums = readLine()!.split(separator: " ").map{Int(String($0))!}
 nums = nums.sorted{$0 < $1}
 
-var visited: [Bool] = Array(repeating: false, count: nums.count)
 var stack = [Int]()
 
 func dfs(){
