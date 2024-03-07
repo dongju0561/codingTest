@@ -1,16 +1,4 @@
-/*
- [백준] Z
- 
- 4등분 -> 하나의 영역의 칸이 4개가 될때까지 ->
- 64
- 변화하는 부분
- Z탐색 시작 인덱스
- 
- Z탐색 순서
- (startX,starY) -> (startX+1,starY) -> (startX,starY+1) -> (startX+1,starY+1)
- (0,0 -> 0,1 -> 1,0 -> 1,1) -> (2,0 -> 3,0 -> 2,1 -> 2,2) -> (0,2 -> 1,2 -> 0,3 -> 1,3) -> (2,2 -> 3,2 -> 2,3 -> 3,3)
- 
- */
+
 import Foundation
 
 let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
@@ -21,7 +9,8 @@ func recursion(n: Int, r: Int, c: Int, result: Double) -> Int {
     if n == 1 {
         return Z[r][c] + Int(result)
     }
-
+    
+    //N^2 * N^2 크기의 지도의 반을 나누기 위한 기준이 되는 수 변수 half에 할당
     let half = Int(pow(2.0, Double(n)) / 2)
     
     if r < half && c < half  { // 1사분면
@@ -37,6 +26,19 @@ func recursion(n: Int, r: Int, c: Int, result: Double) -> Int {
 
 print(recursion(n: N, r: R, c: C, result: 0))
 
+/*
+ [백준] Z
+ 
+ 4등분 -> 하나의 영역의 칸이 4개가 될때까지 ->
+ 64
+ 변화하는 부분
+ Z탐색 시작 인덱스
+ 
+ Z탐색 순서
+ (startX,starY) -> (startX+1,starY) -> (startX,starY+1) -> (startX+1,starY+1)
+ (0,0 -> 0,1 -> 1,0 -> 1,1) -> (2,0 -> 3,0 -> 2,1 -> 2,2) -> (0,2 -> 1,2 -> 0,3 -> 1,3) -> (2,2 -> 3,2 -> 2,3 -> 3,3)
+ 
+ */
 
 //let Nrc = readLine()!.split(separator: " ").map{Int(String($0))!}
 //let N = Nrc[0]
