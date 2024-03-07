@@ -16,16 +16,27 @@ var sum = 0
 var visited = Array(repeating: false, count: nums.count)
 var count = 0
 
+/*
+start는 수를 더할지 말지를 고려해야하는 idx범위의 시작
+level은 더한 값의 갯수를 의미
+
+*/
 func DFS(_ level: Int, _ start: Int){
     if level > 0 && sum == S{
         count += 1
     }
     //visited 배열을 통해 수열의 요소를 합할지 말지를 결정하여 중복을 제거
+    //visited는 이미 변경되어 확정된값
+
+    //고려해야 하는 범위는 첫 인덱스부터 N-1까지 고려
     for i in start..<N{
         if !visited[i]{
+            //더했어!!
             visited[i] = true
             sum += nums[i]
+            //
             DFS(level + 1, i)
+            //빼준 경우
             visited[i] = false
             sum -= nums[i]
         }
