@@ -22,8 +22,12 @@ func dfs(){
             stack.append(nums[idx])
             dfs()
             stack.removeLast()
+            1 2 3 4
+            1 2 4 3
         }
     }
 }
 
 dfs()
+
+
