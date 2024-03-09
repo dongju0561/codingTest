@@ -29,17 +29,18 @@ func DFS(_ level: Int, _ start: Int){
     //visited는 이미 변경되어 확정된값
 
     //고려해야 하는 범위는 첫 인덱스부터 N-1까지 고려
+    //조합
     for i in start..<N{
-        if !visited[i]{
+        // if !visited[i]{
             //더했어!!
             visited[i] = true
             sum += nums[i]
             //
-            DFS(level + 1, i)
+            DFS(level + 1, i+1)
             //빼준 경우
             visited[i] = false
             sum -= nums[i]
-        }
+        // }
     }
 }
 DFS(0, 0)
