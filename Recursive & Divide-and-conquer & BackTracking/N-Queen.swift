@@ -16,6 +16,22 @@ let n = Int(readLine()!)!
  그러므로 하나의 x축에는 하나의 퀸만 위치할 수 있기 때문에 굳이 2차원 배열로 선언하지 않아도 되기 때문에 체스판을 1차원배열로 선언하였다.
  board의 인덱스는 x좌표를 의미하고 인덱스에 맵핑 되어있는 값은 y좌표에 해당한다.
  */
+import Foundation
+
+struct AlgoTimer{
+    private var startTime: TimeInterval = 0.0
+    private var endTime: TimeInterval = 0.0
+    
+    mutating func start(){
+        startTime = NSDate().timeIntervalSince1970
+    }
+    mutating func end() -> TimeInterval{
+        endTime = NSDate().timeIntervalSince1970
+        return endTime - startTime
+    }
+}
+
+var timeChecker = AlgoTimer()
 var board = [Int](repeating: 0, count: n)
 var visited = [Bool](repeating: false, count: n)
 var answer = 0
@@ -46,8 +62,8 @@ func dfs(x: Int) {
     }
     //순열
     for i in 0..<n {
-        //가로 선상에 queen 있는지 확인
-        if visited[i] { continue }
+    //가로 선상에 queen 있는지 확인
+    if visited[i] {continue}
         
         //(x,i) 위치에 queen 위치시키기
         board[x] = i
@@ -62,9 +78,13 @@ func dfs(x: Int) {
         }
     }
 }
-
+timeChecker.start()
 dfs(x: 0)
-
+print(timeChecker.end())
+/*
+ continue:   0.24009394645690918
+ continue X: 0.44844579696655273
+ */
 print(answer)
 
 //let N = 8//Int(readLine()!)!
