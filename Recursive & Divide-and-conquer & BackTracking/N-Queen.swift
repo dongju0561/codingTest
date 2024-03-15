@@ -45,8 +45,8 @@ func check(x: Int) -> Bool {
         }
         //대각선 확인
         /*
-         신기하네.. 대각선 상에 있는지 확인하는 방법
-         if 두 점의 x간의 거리 == y간의 거리 => 대각선 상에 있음
+        신기하네.. 대각선 상에 있는지 확인하는 방법
+        if 두 점의 x간의 거리 == y간의 거리 => 대각선 상에 있음
         */
         if abs(i - x) == abs(board[i] - board[x]) {
             return false
@@ -87,15 +87,15 @@ print(timeChecker.end())
  */
 print(answer)
 
-//let N = 8//Int(readLine()!)!
-//
-//var queenMap: [[Int]] = Array(repeating: Array(repeating: 0, count: N), count: N)
-//var attackRange: [[Bool]] = Array(repeating: Array(repeating: false, count: N), count: N)
-//var Qvisited: [[Bool]] = Array(repeating: Array(repeating: false, count: N), count: N)
-//var queenCoordins = [(x: Int,y: Int)]()
-//var cnt = 0
-//
-//func setQueenAttackRange(_ x: Int,_ y: Int){
+// let N = 8//Int(readLine()!)!
+
+// var queenMap: [[Int]] = Array(repeating: Array(repeating: 0, count: N), count: N)
+// var attackRange: [[Bool]] = Array(repeating: Array(repeating: false, count: N), count: N)
+// var Qvisited: [[Bool]] = Array(repeating: Array(repeating: false, count: N), count: N)
+// var queenCoordins = [(x: Int,y: Int)]()
+// var cnt = 0
+
+// func setQueenAttackRange(_ x: Int,_ y: Int){
 //    //가로 세로 범위
 //    for i in 0..<N{
 //        attackRange[x][i] = true
@@ -113,46 +113,46 @@ print(answer)
 //            attackRange[x+i][y+i] = true
 //        }
 //    }
-//}
-//func updateQueenAttackRange(coordins: [(x: Int,y: Int)]){
+// }
+// func updateQueenAttackRange(coordins: [(x: Int,y: Int)]){
 //    //업데이트 시 visited 초기화
 //    attackRange = Array(repeating: Array(repeating: false, count: N), count: N)
-//    
+   
 //    for coordin in coordins {
 //        setQueenAttackRange(coordin.x, coordin.y)
 //    }
-//}
-//
-//
-//func recursive(_ numOfQueen: Int){
+// }
+
+
+// func recursive(_ numOfQueen: Int){
 //    if numOfQueen == N{
 //        cnt += 1
 //        return
 //    }
-//    
+   
 //    for x in 0..<N{
 //        for y in 0..<N{
 //            if !Qvisited[x][y]{
 //                if !attackRange[x][y]{
-////                    Qvisited[x][y] = true
+// //                    Qvisited[x][y] = true
 //                    queenCoordins.append((x, y))
 //                    updateQueenAttackRange(coordins: queenCoordins)
-////                    for coor in queenCoordins{
-////                        print(coor.y,terminator: "\t")
-////                    }
-////                    print("")
+// //                    for coor in queenCoordins{
+// //                        print(coor.y,terminator: "\t")
+// //                    }
+// //                    print("")
 //                    recursive(numOfQueen + 1)
-////                    Qvisited[x][y] = false
+// //                    Qvisited[x][y] = false
 //                    queenCoordins.removeLast()
 //                    updateQueenAttackRange(coordins: queenCoordins)
 //                }
 //            }
 //        }
 //    }
-//}
-//recursive(0)
-////경우의 수 출력
-//print(cnt)
+// }
+// recursive(0)
+// //경우의 수 출력
+// print(cnt)
 
 
 
