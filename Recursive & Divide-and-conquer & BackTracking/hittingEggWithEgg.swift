@@ -11,61 +11,61 @@
  단, 손에 든 계란이 깨졌거나 깨지지 않은 다른 계란이 없으면 치지 않고 넘어간다.
  이후 손에 든 계란을 원래 자리에 내려놓고 3번 과정을 진행한다.
  손에 들고 있는 계란으로 깨지지 않은 다른 계란 중에서 하나를 친다.
+
+ 달걀이 3개인 경우
+ 
+ O O O
  
 */
+//참고 코드
+import Foundation
 
-//import Foundation
-//
-//let n = Int(readLine()!)!
-//
-////typealias를 사용해서 재정의해준 타입이 관련된 정보가 무엇인지 알려줄 수 있다.
-//typealias Egg = (d: Int, w: Int)
-//
-//var eggs = [Egg](repeating: (0, 0), count: n)
-//var result = 0
-//for i in 0..<n {
-//    let egg = readLine()!.split(separator: " ").map { Int(String($0))! }
-//    eggs[i] = (egg[0], egg[1])
-//}
-//
-//dfs(idx: 0)
-//print(result)
-//
-//// 집은 계란의 index
-//func dfs(idx: Int) {
-//    // 종료 조건. 마지막 계란을 잡았으면 종료
-//    if idx == n {
-//        var tmp = 0
-//        for i in 0..<n {
-//            if eggs[i].d <= 0 {
-//                tmp += 1
-//            }
-//        }
-//        result = max(result, tmp)
-//        return
-//    }
-//    
-//    var flag = false
-//    for i in 0..<n {
-//        //대상 달걀이 들고 있는 달걀인지 그리고 그 두개의 달걀이 깨져있는지 확인
-//        if i != idx && eggs[idx].d > 0 && eggs[i].d > 0 {
-//            flag = true
-//            
-//            // 침
-//            eggs[i].d -= eggs[idx].w
-//            eggs[idx].d -= eggs[i].w
-//            
-//            // dfs
-//            dfs(idx: idx+1)
-//            
-//            // 취소
-//            eggs[i].d += eggs[idx].w
-//            eggs[idx].d += eggs[i].w
-//        }
-//    }
-//    
-//    if !flag { dfs(idx: idx+1) }
-//}
+let n = Int(readLine()!)!
+
+//typealias를 사용해서 재정의해준 타입이 관련된 정보가 무엇인지 알려줄 수 있다.
+typealias Egg = (d: Int, w: Int)
+
+var eggs = [Egg](repeating: (0, 0), count: n)
+var result = 0
+for i in 0..<n {
+   let egg = readLine()!.split(separator: " ").map { Int(String($0))! }
+   eggs[i] = (egg[0], egg[1])
+}
+
+dfs(idx: 0)
+print(result)
+
+// 집은 계란의 index
+func dfs(idx: Int) {
+   // 종료 조건. 마지막 계란을 잡았으면 종료
+    if idx == n {
+        var tmp = 0
+        for i in 0..<n {
+            if eggs[i].d <= 0 {
+                tmp += 1
+            }
+        }
+        result = max(result, tmp)
+        return
+    }
+    var flag = false
+    for i in 0..<n {
+       //대상 달걀이 들고 있는 달걀인지 그리고 그 두개의 달걀이 깨져있는지 확인
+        if i != idx && eggs[idx].d > 0 && eggs[i].d > 0 {
+            flag = true
+           // 침
+            eggs[i].d -= eggs[idx].w
+            eggs[idx].d -= eggs[i].w
+           // dfs
+            dfs(idx: idx+1)
+           // 취소
+            eggs[i].d += eggs[idx].w
+            eggs[idx].d += eggs[i].w
+        }
+    }
+    //들고 있는 달걀을 가지고 오른쪽에 달걀을 치지 못하는 경우에도 다음으로 진행
+    if !flag { dfs(idx: idx+1) }
+}
 
 
 let N = Int(readLine()!)!

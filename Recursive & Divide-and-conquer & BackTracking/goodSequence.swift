@@ -47,6 +47,8 @@ var flag = false
 
 //range 범위 만큼 맨뒤에 요소들 비교 같으면 true, 다르면 false
 func compare(_ range: Int) -> Bool{
+    범위 1
+    _ _ _ _
     let rightStart: Int = result.count - range
     let leftStart: Int = rightStart - range
     for idx in 0..<range{
