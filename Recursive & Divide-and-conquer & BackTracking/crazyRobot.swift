@@ -1,4 +1,109 @@
 /*
+ [백준] 미친 로봇
+ 
+ N = 로봇 동작 횟수(N <= 14)
+ (N*2+1 X N*2+1)평명 상 현재 위치는 [N,N]
+ 동서남북 임의로 한번 이동
+ 한번이라도 같은 곳으로 가게 된다면 -> 단순하지 않음
+ 한번이라도 같은 곳으로 가지 않는다면 -> 단순함
+ 이동 경로가 단순하지 않을 확률 = 같은 곳으로 한 번보다 많이 이동하지 않을 경우 / 이동 전체 경우의 수
+ */
+/*
+ 지도를 만드는것이 아니라 이동 좌표만 저장
+ */
+typealias Coordinate = (x:Int,y:Int)
+let Newsn = readLine()!.split(separator: " ").map{Int(String($0))!}
+let N = Newsn[0]
+let eastPos = Double(Newsn[1])/100
+let westPos = Double(Newsn[2])/100
+let southPos = Double(Newsn[3])/100
+let NorthPos = Double(Newsn[4])/100
+
+let directions: [Coordinate] = [(0,1),(0,-1),(1,0),(-1,0)]
+var totalPercentage: Double = 0.0
+func recursive(_ numOfRepeat: Int,_ result: [Coordinate],_ percentage: Double,_ currentCoordinate: Coordinate){
+    if numOfRepeat == N{
+        totalPercentage += percentage
+        return
+    }
+    for direction in directions {
+//        var isSimple = true
+        let nextCoordinate: Coordinate = (currentCoordinate.x + direction.x, currentCoordinate.y + direction.y)
+        //단순한 경우
+        if !result.contains(where: {return $0 == nextCoordinate}){
+            var posTemp = result
+            posTemp.append(nextCoordinate)
+            var tempPercentage = percentage
+            if directions[0] == direction{
+                tempPercentage *= eastPos
+            }
+            else if directions[1] == direction{
+                tempPercentage *= westPos
+            }
+            else if directions[2] == direction{
+                tempPercentage *= southPos
+            }
+            else if directions[3] == direction{
+                tempPercentage *= NorthPos
+            }
+            recursive(numOfRepeat + 1, posTemp, tempPercentage, nextCoordinate)
+        }
+    }
+}
+
+recursive(0, [(0,0)], 1.0, (0,0))
+print(totalPercentage)
+
+// typealias Coordinate = (x:Int,y:Int)
+// let Newsn = readLine()!.split(separator: " ").map{Int(String($0))!}
+// let N = Newsn[0]
+// let eastPos = Double(Newsn[1])
+// let westPos = Double(Newsn[2])
+// let southPos = Double(Newsn[3])
+// let NorthPos = Double(Newsn[4])
+
+// let directions: [Coordinate] = [(0,1),(0,-1),(1,0),(-1,0)]
+// var totalPercentage: Double = 0.0
+// func recursive(_ numOfRepeat: Int,_ result: [Coordinate],_ dirArr: [Coordinate],_ currentCoordinate: Coordinate){
+//     if numOfRepeat == N{
+//         var percentage: Double = 1.0
+//         for direction in dirArr{
+//             if directions[0] == direction{
+//                 percentage *= eastPos/100
+//             }
+//             else if directions[1] == direction{
+//                 percentage *= westPos/100
+//             }
+//             else if directions[2] == direction{
+//                 percentage *= southPos/100
+//             }
+//             else if directions[3] == direction{
+//                 percentage *= NorthPos/100
+//             }
+//         }
+//         totalPercentage += percentage
+//         return
+//     }
+//     for direction in directions {
+// //        var isSimple = true
+//         let nextCoordinate: Coordinate = (currentCoordinate.x + direction.x, currentCoordinate.y + direction.y)
+//         //단순한 경우
+//         if !result.contains(where: {return $0 == nextCoordinate}){
+//             var posTemp = result
+//             var dirTemp = dirArr
+//             posTemp.append(nextCoordinate)
+//             dirTemp.append(direction)
+//             recursive(numOfRepeat + 1, posTemp, dirTemp, nextCoordinate)
+//         }
+//     }
+// }
+
+// recursive(0, [(0,0)], [], (0,0))
+// print(totalPercentage)
+
+
+
+/*
 방향이 추가될때마다 단순인지 확인
 */
 
